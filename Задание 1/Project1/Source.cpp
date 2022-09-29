@@ -8,7 +8,7 @@ using namespace std;
 * \param y Второй параметр функции.
 * \return Значение функции.
 */
-double getA(double x, double y);
+const double getA(double x, double y);
 
 /**
 * \brief
@@ -16,7 +16,7 @@ double getA(double x, double y);
 * \param y Второй параметр функции.
 * \return Значение функции.
 */
-double getB(double x, double y);
+const double getB(double x, double y);
 /**
 * \brief Точка входа в программу.
 * \return Возращает 0 в случае успеха
@@ -33,11 +33,11 @@ int main()
 	cout << " b = " << b << endl;
 	return 0;
 }
-double getA(const double x, const double y)
+const double getA(const double x, const double y)
 {
 	return (1 + x + x * x / 2 + x * x * x / 3 + x * x * x * x / 4);
 }
-double getB(double x, const double y)
+const double getB(double x, const double y)
 {
 	return (x * (sin(pow(x, 3)) + pow(cos(y), 2)));
 }
