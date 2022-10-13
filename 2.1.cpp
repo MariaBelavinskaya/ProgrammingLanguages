@@ -26,7 +26,7 @@ double squadCirc(const double r);
 *\ param h - высота
 **/
 
-double squadTrap(const int a, const int b, const int h);
+double squadTrap(const double a, const double b, const double h);
 
 /**
 * \brief
@@ -68,6 +68,7 @@ int main()
 	cout << "Площадь круга равна " << squadCirc(r);
 	return 0;
 }
+
 double getVariable(const string& message)
 {
     cout << message;
@@ -76,11 +77,14 @@ double getVariable(const string& message)
     return variable;
 }
 
-double squadCirc(const int r) {
+double squadCirc(const double r) 
+{
 	double sqd = (M_PI) * pow(r,2);
 	return sqd;
 }
-double squadTrap(const int a, const int b, const int h) {
+
+double squadTrap(const double a, const double b, const double h) 
+{
 	double sqd = (a + b)/ 2 * h;
 	return sqd;
 }
