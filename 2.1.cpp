@@ -17,7 +17,7 @@ double getVariable(const string& message);
 *\return Значение функции.
 */
 
-double squadCirc(const int r);
+double squadCirc(const double r);
 
 /**
 *\brief Функция, рассчитывающая площадь трапеции
