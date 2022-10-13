@@ -54,6 +54,24 @@ int main()
 	cin >> input;
 	const auto choice = static_cast<userInput>(input);
 	cout << "\n";
+	
+	switch(choice)
+    {
+        case userInput::squadCirc:
+        {
+            const double t = squadCirc(r);
+            cout << "Площадь круга = " << t << endl;
+            break;
+        }
+
+        case userInput::squadTrap:
+        {
+            const double t = squadTrap(a, b, h);
+            cout << "Площадь трапеции = " << t << endl;
+            break;
+        }
+    }
+    return 0;
 
 	setlocale(LC_ALL, "Rus");
 	cout << "Введите  основание трапеции\n ";
