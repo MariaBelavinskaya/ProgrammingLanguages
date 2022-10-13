@@ -6,20 +6,21 @@ using namespace std;
 *\brief Функция, рассчитывающая площадь круга
 *\param r - радиус круга
 **/
-double squadCirc(const int r);
+double squadCirc(double const int r);
 /**
 *\brief Функция, рассчитывающая площадь трапеции
 *\ param а - певрое основание
 *\ param b - второе основание
 *\ param h - высота
 **/
-double squadTrap(const int a, const int b, const int h);
+double squadTrap(double const int a, double const int b, double const int h);
 /**
 * \brief
 * \точка входа в программу
 * \return 0 в случае успеха
 */
-int main() {
+int main() 
+{
 	setlocale(LC_ALL, "Rus");
 	int a, b, h, r;
 	cout << "Введите  основание трапеции\n ";
@@ -34,11 +35,11 @@ int main() {
 	cout << "Площадь круга равна " << squadCirc(r);
 	return 0;
 }
-double squadCirc(const int r) {
+double squadCirc(double const int r) {
 	double sqd = (M_PI) * pow(r,2);
 	return sqd;
 }
-double squadTrap(const int a, const int b, const int h) {
+double squadTrap(double const int a, double const int b, double const int h) {
 	double sqd = (a + b)/ 2 * h;
 	return sqd;
 }
