@@ -35,11 +35,15 @@ int main()
 	cout << "Площадь круга равна " << squadCirc(r);
 	return 0;
 }
-double squadCirc(double const int r) {
+
+double squadCirc(double const int r) 
+{
 	double sqd = (M_PI) * pow(r,2);
 	return sqd;
 }
-double squadTrap(double const int a, double const int b, double const int h) {
+
+double squadTrap(double const int a, double const int b, double const int h) 
+{
 	double sqd = (a + b)/ 2 * h;
 	return sqd;
 }
