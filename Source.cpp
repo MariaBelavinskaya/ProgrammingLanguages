@@ -53,5 +53,5 @@ bool IsExists(const double x)
 
 double Calculation(const double x)
 {
-    return x + sqrt(x) + pow(x, 1/3) - 2.5;
+    return x + sqrt(x) + cbrt(x) - 2.5;
 }
