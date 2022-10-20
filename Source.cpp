@@ -22,11 +22,12 @@ double Calculation(const double x);
 *\brief Точка входа в программу.
 *\return Возвращает 0 в случае успешного выполнения.
 */
+
 int main()
 {
-	const double xStart=0.4;
-	const double xFinish=1.00;
-	const double step=0.05;
+	const double xStart = 0.4;
+	const double xFinish = 1.00;
+	const double step = 0.05;
 	double x = xStart;
 
 		while (x < xFinish + step)
