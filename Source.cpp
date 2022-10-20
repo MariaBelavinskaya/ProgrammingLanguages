@@ -1,29 +1,57 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <iostream>
+#include<limits>
+using namespace std;
 
 /**
-*\brief Выполняет задание.
-*\return Возращает значение функции y.
-*\param x - параметр x
-**/
-void getY(double x);
+*\brief РџСЂРѕРІРµСЂРєР° y РїСЂРё Р·Р°РґР°РЅРЅРѕРј x.
+*\param x РџР°СЂР°РјРµС‚СЂ С„СѓРЅРєС†РёРё.
+*\return true Р•СЃР»Рё y СЃСѓС‰РµСЃС‚РІСѓРµС‚ РїСЂРё Р·Р°РґР°РЅРЅРѕРј x.
+*/
+bool IsExists(const double x);
 
 /**
-*\brief Математическая функция, рассчитывающая значение функции y.
-*\return Возращает значение функции y.
-**/
+*\brief Р¤СѓРЅРєС†РёСЏ СЂР°СЃСЃС‡РµС‚Р° РїРѕ Р·Р°РґР°РЅРЅРѕР№ С„РѕСЂРјСѓР»Рµ.
+*\param x РџР°СЂР°РјРµС‚СЂ С„СѓРЅРєС†РёРё.
+*\return Р’РѕР·РІСЂР°С‰Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ С„СѓРЅРєС†РёРё.
+*/
+double Calculation(const double x);
+
+/**
+*\brief РўРѕС‡РєР° РІС…РѕРґР° РІ РїСЂРѕРіСЂР°РјРјСѓ.
+*\return Р’РѕР·РІСЂР°С‰Р°РµС‚ 0 РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕРіРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ.
+*/
 int main()
 {
-	double x = 4;
-	getY(x);
+	const double xStart=0.4;
+	const double xFinish=1.00;
+	const double step=0.05;
+	double x = xStart;
+
+		while (x < xFinish + step)
+		{
+            if (IsExists(x))
+            {
+                const double y = Calculation(x);
+                cout << x << " " << y << "\n";
+            }
+            else
+            {
+                cout << x << " " << "РќРµС‚ Р·РЅР°С‡РµРЅРёСЏ \n";
+            }
+            x += step;
+        }
+
+    return 0;
 }
 
-void getY(double x)
+bool IsExists(const double x)
 {
-	while (x < 1.1)
-	{
-		std::cout << "y=" << x + sqrt(x) + pow(x, 1.0 / 3) - 2.5 << "\n";
-		x = x + 0.05;
-	}
+    return (abs(x)) > numeric_limits<double>::min();
+}
+
+double Calculation(const double x)
+{
+    return x + sqrt(x) + pow(x, 1/3) - 2.5;
 }
