@@ -26,7 +26,7 @@ int** filling_random(const size_t rows, const size_t cols);
 *\param cols - количество столбцов в массив
 *\param arr - укузатель на массив
 */
-void filling_manual(int** arr, const size_t rows, const size_t cols);
+int** filling_manual(int** arr, const size_t rows, const size_t cols);
 
 /*
 *\brief Фукция, выводящая на экран массив
