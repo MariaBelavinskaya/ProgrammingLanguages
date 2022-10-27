@@ -36,8 +36,6 @@ int** filling_manual(int** arr, const size_t rows, const size_t cols);
 */
 void print_array(int** arr, const size_t rows, const size_t cols);
 
-
-
 /*
 *\brief Фукция, удаляющая массив
 *\param array - указатель на массив
