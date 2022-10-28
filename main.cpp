@@ -1,48 +1,47 @@
-#include<iostream>
-#include<ctime>
-#include<random>
+#include <iostream> 
+#include <ctime> 
+#include <random> 
 using namespace std;
 
-/**
-*\brief Выбор способа заполнения
+/*
+*\brief Выбор способа заполнения массива
 *\param c_filling_random - рандомные числа
-*\param c_filling_manual - ввод с клавиатуры
+*\param с_filling_manual - с клавиатуры
 */
 enum class fillingarray {
 	c_filling_random,
 	c_filling_manual
 };
 
-/**
-*\brief Функция, заполняющая массив случайными числами
-*\param rows - количество рядов массива
-*\param cols - количество столбцов массива 
+/*
+*\brief Функция реализующая заполнение массива случайными числами
+*\param rows - кол-во строк массива
+*\param cols - кол-во столбцов массива
 */
-int** filling_random(const size_t rows, const size_t cols);
+int** filling_random(const size_t rows, const size_t cols, const int min, const int max);
 
-/**
-*\brief Функция, заполняющая массив случайными числами
-*\param rows - количество рядов в массиве
-*\param cols - количество столбцов в массив
-*\param arr - укузатель на массив
+/*
+*\brief Фукция заполняющая массив данными с клавиатуры
+*\param arr указатель на массив
+*\param rows - кол-во строк в массиве
+*\param cols - кол-во столбцов в массиве
 */
 int** filling_manual(int** arr, const size_t rows, const size_t cols);
 
 /*
-*\brief Фукция, выводящая на экран массив
+*\brief Фукция выводящая на экран массив
 *\param arr - указатель на массив
-*\param rows - количество рядов в массиве
-*\param cols - количество столбцов в массиве
+*\param rows - кол-во строк в массиве
+*\param cols - кол-во столбцов в массиве
 */
 void print_array(int** arr, const size_t rows, const size_t cols);
 
 /*
-*\brief Фукция, удаляющая массив
+*\brief Фукция удаляющая массив
 *\param array - указатель на массив
-*\param rows - количество рядов в массиве
+*\param rows - кол-во строк в массиве
 */
 void delete_array(int**& array, const size_t rows);
-
 
 /*
 *\brief Фукция создающая двухмерный массив
@@ -58,8 +57,6 @@ int** create_array(const size_t rows, const size_t cols);
 *\return Возвращает размеры массива
 */
 size_t get_size(const string& message);
-
-
 
 /*
 *\brief Фукция заполняющая массив нулями
@@ -104,11 +101,11 @@ int counting_extra_rows(int** arr, const size_t rows, const size_t cols);
 */
 void setting_new_rows(int** oldarr, int** arr, const size_t oldrows, const size_t rows, const size_t cols);
 
+bool isOdd(size_t i);
 /*
 *\brief Точка входа в программу
 *\return возвращает 0 в случае успеха
 */
-
 int main() {
 	setlocale(LC_ALL, "rus");
 	size_t rows = 1;
@@ -128,7 +125,14 @@ int main() {
 	const auto choise = static_cast<fillingarray>(input);
 	switch (choise) {
 	case(fillingarray::c_filling_random):
-		array = filling_random(rows, cols);
+
+		int min, max;
+		cout << "Введите минимальное случайное число\n";
+		cin >> min;
+		cout << "Введите максимальное случайное число\n";
+		cin >> max;
+		array = filling_random(rows,
+			cols, min, max);
 		break;
 	case(fillingarray::c_filling_manual):
 		filling_manual(array, rows, cols);
@@ -147,20 +151,27 @@ int main() {
 	setting_new_rows(array, array_sec, rows, newrows, cols);
 	filling_first_row(array_sec, array, newrows, cols);
 	print_array(array_sec, newrows, cols);
+	delete_array(array, rows);
+	delete_array(array_sec, newrows);
 	return 0;
 }
+
+bool isOdd(size_t i) {
+	if ((i + 1) % 2 != 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 void setting_new_rows(int** oldarr, int** arr, const size_t oldrows, const size_t rows, const size_t cols) {
 	size_t exrow = 0;
-	bool is_odd = false;
 	for (size_t i = 0; i < oldrows; i++) {
-		is_odd = false;
 		for (size_t j = 0; j < cols; j++) {
-			if ((i + 1) % 2 != 0) {
-				is_odd = true;
-			}
 			arr[i + exrow][j] = oldarr[i][j];
 		}
-		if (is_odd) {
+		if (isOdd(i)) {
 			exrow++;
 		}
 	}
@@ -177,31 +188,24 @@ void filling_first_row(int** arr, int** oldarr, const size_t rows, const size_t 
 }
 
 int counting_extra_rows(int** arr, const size_t rows, const size_t cols) {
-	if (rows % 2 == 0) {
+	if (isOdd(rows)) {
 		return rows / 2;
 	}
 	else {
 		return rows / 2 + 1;
 	}
 }
+
 void square_three_cols(int** arr, const size_t rows, const size_t cols) {
-	for (size_t i = 0; i < cols; i++) {
+	for (size_t i = 0; i < 3; i++) {
 		for (size_t j = 0; j < rows; j++) {
-			if (i < 3) {
-				arr[j][i] = arr[j][i] * arr[j][i];
-			}
+			arr[j][i] = arr[j][i] * arr[j][i];
 		}
 	}
 
 }
 
-
-int** filling_random(const size_t rows, const size_t cols) {
-	int min, max;
-	cout << "Введите минимальное случайное число\n";
-	cin >> min;
-	cout << "Введите максимальное случайное число\n";
-	cin >> max;
+int** filling_random(const size_t rows, const size_t cols, const int min, const int max) {
 	int** arr = create_array(rows, cols);
 	for (size_t i = 0; i < rows; i++) {
 		for (size_t j = 0; j < cols; j++) {
@@ -222,7 +226,6 @@ void filling_zeros(int** arr, const size_t rows, const size_t cols)
 	}
 }
 
-
 void filling_manual(int** arr, const size_t rows, const size_t cols) {
 	cout << "Введите элементы массива" << "\n";
 	for (size_t i = 0; i < rows; i++) {
@@ -242,7 +245,6 @@ void print_array(int** arr, const size_t rows, const size_t cols) {
 	cout << '\n';
 }
 
-
 size_t get_size(const string& message) {
 	int size = -1;
 	cout << message;
@@ -253,9 +255,6 @@ size_t get_size(const string& message) {
 	}
 	return size;
 }
-
-
-
 
 int** create_array(const size_t rows, const size_t cols) {
 	int** array = new int* [rows];
