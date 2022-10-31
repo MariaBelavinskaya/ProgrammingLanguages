@@ -1,6 +1,6 @@
-#include <iostream> 
-#include <ctime> 
-#include <random> 
+#include <iostream>
+#include <ctime>
+#include <random>
 using namespace std;
 
 /*
@@ -26,7 +26,7 @@ int** filling_random(const size_t rows, const size_t cols, const int min, const 
 *\param rows - кол-во строк в массиве
 *\param cols - кол-во столбцов в массиве
 */
-int** filling_manual(int** arr, const size_t rows, const size_t cols);
+int filling_manual(int** arr, const size_t rows, const size_t cols);
 
 /*
 *\brief Фукция выводящая на экран массив
@@ -157,12 +157,7 @@ int main() {
 }
 
 bool isOdd(size_t i) {
-	if ((i + 1) % 2 != 0) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	return i % 2 == 0;
 }
 
 void setting_new_rows(int** oldarr, int** arr, const size_t oldrows, const size_t rows, const size_t cols) {
@@ -226,7 +221,7 @@ void filling_zeros(int** arr, const size_t rows, const size_t cols)
 	}
 }
 
-void filling_manual(int** arr, const size_t rows, const size_t cols) {
+int filling_manual(int** arr, const size_t rows, const size_t cols) {
 	cout << "Введите элементы массива" << "\n";
 	for (size_t i = 0; i < rows; i++) {
 		for (size_t j = 0; j < cols; j++) {
